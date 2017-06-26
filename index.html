@@ -8,8 +8,13 @@
     <body>
         <script type="text/javascript">
             // Your beautiful D3 code will go here
+            var dataset = [ 5, 10, 15, 20, 25, 30 ];
+            d3.select("body").selectAll("p")
+              .data(dataset)
+              .enter()
+              .append("p")
+              .text("New paragraph!");
 
-            d3.select("body").append("p").text("New paragraph!");
         </script>
     </body>
 </html>
