@@ -1,20 +1,26 @@
 //Width and height
 var w = 500;
-var h = 100;
+var h = 300;
+
+var padding = 20;
 
 var dataset = [
 				[5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
-				[410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
+				[410, 12], [475, 44], [25, 67], [85, 21], [220, 88], [600, 150]
 			  ];
 
 //Create scale functions
 var xScale = d3.scaleLinear()
 					 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-					 .range([0, w]);
+					 .range([padding, w-padding*2]);
 
 var yScale = d3.scaleLinear()
 					 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-					 .range([0, h]);
+					 .range([h - padding, padding]);
+
+var rScale = d3.scaleLinear()
+         .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+         .range([2, 5]);
 
 //Create SVG element
 var svg = d3.select("body")
@@ -33,7 +39,7 @@ svg.selectAll("circle")
    		return yScale(d[1]);
    })
    .attr("r", function(d) {
-   		return Math.sqrt(h - d[1]);
+   		return rScale(d[1]);
    });
 
 svg.selectAll("text")
